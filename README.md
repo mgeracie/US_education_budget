@@ -1,5 +1,4 @@
-# High School Graduation Rates from US Educational Funding:
-Guiding decision making with deep learning
+# High School Graduation Rates from US Educational Funding: Guiding decision making with deep learning
 
 **Contents:**
 * [Background](#background)
