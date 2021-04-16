@@ -16,10 +16,15 @@ In this project, we attempt to use deep learning to gain insights into the relat
 We will use data from the National Center for Education Statistics (NCES) to establish causal relationships between budgetary factors and high school graduation rates. High school graduation rates are obtained from the NCHEMS Information Center for Higher Education Policymaking and Analysis as measured by the Adjusted Cohort Graduation Rate (ACGR), that is, the percentage of an entering 9th grade class that graduates four years later. One can 
 
 <p align="center">
- <img src="statewide_grad_rates_1995.png" alt="Graduation Rates 1995"/>
+ <img src="statewide_grad_rates_1995.png" alt="Graduation Rates 1995" width=500/>
+ <img src="statewide_grad_rates_1995.png" alt="Graduation Rates 1995" width=500/>
 </p>
 
 These budgetary factors will include (per student) overall funding, as well as how it is distributed amongst teacher salaries and benefits, operation and maintenance, administration, instructional equipment, pupil services, and other factors. Other direct results of budgetary policy such as teacher/student ratio will be included as well. Societal outcomes we hope to investigate are high school graduation rate, college graduation rate, drug overdose rates, community median income, and community employment rates. Of course, these societal factors may just as easily influence education funding as funding may influence society, so we seek to establish causation by comparing change in budgetary policy to change in societal outcomes after a given time delay. If sufficient data and can be found, the strongest evidence would come from communities with similar initial conditions but with differing changes to budgetary policy.
+
+<p align="center">
+ <img src="exp_per_pupil_1995.png" alt="Graduation Rates 1995"/>
+</p>
 
 ## Results<a name="results"></a>
 
