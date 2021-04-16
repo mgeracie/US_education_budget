@@ -13,23 +13,34 @@ In this project, we attempt to use deep learning to gain insights into the relat
 
 ## Methods<a name="methods"></a>
 
-We will use data from the National Center for Education Statistics (NCES) to establish causal relationships between budgetary factors and high school graduation rates. High school graduation rates are obtained from the NCHEMS Information Center for Higher Education Policymaking and Analysis as measured by the Adjusted Cohort Graduation Rate (ACGR), that is, the percentage of an entering 9th grade class that graduates four years later. One can 
+We will use data from the National Center for Education Statistics (NCES) to establish causal relationships between budgetary factors and high school graduation rates. High school graduation rates are obtained from the NCHEMS Information Center for Higher Education Policymaking and Analysis as measured by the Adjusted Cohort Graduation Rate (ACGR), that is, the percentage of an entering 9th grade class that graduates four years later. We will study the change in the ACGR over the 22 year period from 1995 to 2016 when data is available.
 
 <p align="center">
  <img src="statewide_grad_rates_1995.png" alt="Graduation Rates 1995" width=500/>
  <img src="statewide_grad_rates_2016.png" alt="Graduation Rates 2016" width=500/>
 </p>
 
-These budgetary factors will include (per student) overall funding, as well as how it is distributed amongst teacher salaries and benefits, operation and maintenance, administration, instructional equipment, pupil services, and other factors. Other direct results of budgetary policy such as teacher/student ratio will be included as well. Societal outcomes we hope to investigate are high school graduation rate, college graduation rate, drug overdose rates, community median income, and community employment rates. Of course, these societal factors may just as easily influence education funding as funding may influence society, so we seek to establish causation by comparing change in budgetary policy to change in societal outcomes after a given time delay. If sufficient data and can be found, the strongest evidence would come from communities with similar initial conditions but with differing changes to budgetary policy.
+The independent variables are budgetary factors which include (per student) overall funding, as well as how it is distributed amongst teacher salaries and benefits, operation and maintenance, administration, instructional equipment, pupil services, and other factors. This data as well as revenue sources (state, federal, property tax, title I, etc.) is obtained from the NCES for the years under consideration. Taken together, this data includes over 100 budgetary features collected over 22 years in more than 18,000 academic institutions in all 50 states.
 
 <p align="center">
  <img src="exp_per_pupil_1995.png" alt="Total per Pupil Expenditures 1995" width=500/>
  <img src="exp_per_pupil_2016.png" alt="Total per Pupil Expenditures 2016" width=500/>
 </p>
 
+Since we only have graduation data by state and not by academic institution, we aggregate this data to the state-wide level. To ensure that the model the model learns causal relationships and not merely correlation, we include among the independent variables the historical funding data and graduation rates up to a given year, at which the prediction is performed. We train a neural network and enhance it's performance by blending with machine learning models.
+
+Once we have a model that performs well, we can use it simulate how the state-wide ACGR responds to given prospective funding data over any length of time by iteratively running the model on that data and the results of the previously predicted years. We program such a simulation and evaluate it's performance by running it on historical funding data in a holdout dataset. 
+
 ## Results<a name="results"></a>
 
+We find that our model has excellent performance predicting the state-wide graduation rate in a given year, with a mean-absolute error of about 1.4 percentage points. However, despite our emphasis on identifying causal relationships, this performance does not generalize to longer time spans, with MAEs that quickly degrade into unuseable territory (and MAE of 10 or more) after just 3-4 years.
+
+<p align="center">
+ <img src="model_retrospective_evaluation.png" alt="Simulation Perfomance"/>
+</p>
+
+We conclude that on larger timescales, funding policy, though important, is merely one of many factors determinitive of graduation rates. Unfortunately, the model we have trained is not very useful as given for informing long term policy choices, however it is possible that it could be improved in the future by taking a more holistic approach, including information on economics, demographics, etc. By including a history of non-funding related policy changes as well (for example, teacher hours, student teacher ratios, work-environment surveys, etc), ideally at a more fine grained level than state-wide, one might imagine creating a laboratory for educational policy that can inform decisions in the decades to come.
 
 ## Usage
 
-This project is best viewed in a notebook viewer, which can be accessed [here](./modeling-burden-of-hunger-in-malawi.ipynb). In this notebook, you will find a walk through of the work done and the respective code.
+This project is best viewed in a notebook viewer, which can be accessed [here](./modeling-high-school-graduation-from-budget-policy.ipynb). In this notebook, you will find a walk through of the work done and the respective code.
