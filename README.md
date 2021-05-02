@@ -28,17 +28,19 @@ The independent variables are budgetary factors which include (per student) over
 
 Since we only have graduation data by state and not by academic institution, we aggregate this data to the state-wide level. So that the model can learn causal relationships and not merely correlation, we include among the independent variables the historical funding data and graduation rates up to a given year, at which the prediction is performed. We train a neural network and enhance its performance by blending with a random forrest regressor.
 
-Once we have a model that performs well, we can use it simulate how the state-wide ACGR responds to given prospective funding data over any length of time by iteratively running the model on that data and the results of the previously predicted years. We program such a simulation and evaluate its performance by running it on historical funding data in a holdout dataset. 
+Once we have a model that performs well when predicting a given year, we can use it simulate how the state-wide ACGR responds to given prospective funding data over any length of time by iteratively running the model on that data and the results of the previously predicted years. We program such a simulation and evaluate its performance by running it on historical funding data in a holdout dataset. 
 
 ## Results<a name="results"></a>
 
-We find that our model has excellent performance predicting the state-wide graduation rate in a given year, with a mean-absolute error of about 1.4 percentage points. However, despite our emphasis on identifying causal relationships, this performance does not generalize to longer time spans, with MAEs that quickly degrade into unusable territory (and MAE of 10 or more) after just 3-4 years.
+We find that our model has excellent performance predicting the state-wide graduation rate in a given year, with a mean-absolute error of about 1.4 percentage points. However, when used to similuate results several years out, we unfortunately have a different story. Despite our emphasis on identifying causal relationships, this performance does not generalize to longer time spans, with MAEs that quickly degrade into unusable territory (and MAE of 10 or more) after just 3-4 years.
 
 <p align="center">
  <img src="model_retrospective_evaluation.png" alt="Simulation Performance"/>
 </p>
 
-We conclude that on larger timescales, funding policy, though important, is merely one of many factors determinative of graduation rates. Unfortunately, the model we have trained is not very useful as given for informing long term policy choices, however it is possible that it could be improved in the future by taking a more holistic approach, including information on economics, demographics, etc. By including a history of non-funding related policy changes as well (for example, teacher hours, student teacher ratios, work-environment surveys, etc.), ideally at a more fine-grained level than state-wide, one might imagine creating a laboratory for educational policy that can inform decisions in the decades to come.
+We believe the main cause for this failure is that funding policy, though important, is merely one of many larger, societal factors determinative of graduation rates. Though we have provided the model with highly detailed data on funding specifically, and the model is has good performance when predicting a single year out, true changes to the graduation rate happen on longer time scales, with conditions now making a difference several years down the line. Our model fails to identify meaningful causal relationships between the independent and dependent variables on that time scale. 
+
+Unfortunately, the model we have trained is not very useful as given for informing long term policy choices, however it is possible that it could be improved in the future by taking a more holistic approach, including information on economics, demographics, etc. By including a history of non-funding related policy changes as well (for example, teacher hours, student teacher ratios, work-environment surveys, etc.), ideally at a more fine-grained level than state-wide, one might imagine creating a laboratory for educational policy that can inform decisions in the decades to come.
 
 ## Usage
 
