@@ -26,7 +26,7 @@ The independent variables are budgetary factors which include (per student) over
  <img src="exp_per_pupil_2016.png" alt="Total per Pupil Expenditures 2016" width=500/>
 </p>
 
-Since we only have graduation data by state and not by academic institution, we aggregate this data to the state-wide level. To ensure that the model the model learns causal relationships and not merely correlation, we include among the independent variables the historical funding data and graduation rates up to a given year, at which the prediction is performed. We train a neural network and enhance its performance by blending with machine learning models.
+Since we only have graduation data by state and not by academic institution, we aggregate this data to the state-wide level. So that the model can learn causal relationships and not merely correlation, we include among the independent variables the historical funding data and graduation rates up to a given year, at which the prediction is performed. We train a neural network and enhance its performance by blending with a random forrest regressor.
 
 Once we have a model that performs well, we can use it simulate how the state-wide ACGR responds to given prospective funding data over any length of time by iteratively running the model on that data and the results of the previously predicted years. We program such a simulation and evaluate its performance by running it on historical funding data in a holdout dataset. 
 
@@ -42,4 +42,4 @@ We conclude that on larger timescales, funding policy, though important, is mere
 
 ## Usage
 
-This project is best viewed in a notebook viewer, which can be accessed [here](./modeling-high-school-graduation-from-budget-policy.ipynb). In this notebook, you will find a walkthrough of the work done and the respective code.
+This project is best viewed in a notebook viewer, which can be accessed [here](./modeling-high-school-graduation-from-budget-policy.ipynb). In this notebook, you will find a walkthrough of the work done and the respective code. This may also be viewed on [Kaggle](https://www.kaggle.com/michaelgeracie/modeling-high-school-graduation-from-budget-policy).
